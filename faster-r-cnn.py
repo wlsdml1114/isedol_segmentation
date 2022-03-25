@@ -240,13 +240,14 @@ def train_one_epoch(model, optimizer, data_loader, device, epoch, print_freq):
 parser = argparse.ArgumentParser(description='mask rcnn')    
 parser.add_argument('--name', required = True, help='folder name')
 parser.add_argument('--tr_data_dir', required = True, help='folder name')
+parser.add_argument('--aug_dir', required = True, help='folder name')
 parser.add_argument('--model_dir', required = True, help='folder name')
 args = parser.parse_args()
 
 #set root
 names = args.name.split('/')
 name = names[-1]
-data_path = os.path.join(args.tr_data_dir,name)
+data_path = os.path.join(args.aug_dir,name)
 model_path = args.model_dir
 #Origin_path = '/mnt/nasmnt/sat'
 
@@ -291,7 +292,7 @@ lr_scheduler = torch.optim.lr_scheduler.StepLR(optimizer,
                                                 gamma=0.1)
 
 # 10 ����ũ��ŭ �н��غ��ô�
-num_epochs = 10
+num_epochs = 5
 
 for epoch in range(num_epochs):
     # 1 ����ũ���� �н��ϰ�, 10ȸ ���� ����մϴ�

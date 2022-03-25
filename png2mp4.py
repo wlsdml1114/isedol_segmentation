@@ -3,7 +3,6 @@ import cv2
 from tqdm import tqdm
 import numpy as np
 import argparse
-from demo.image_matting.colab.inference2 import run
 
 
 def get_args():
@@ -97,6 +96,25 @@ for i in tqdm(range(len(frames)),desc = 'mp4 making'):
 
 output.release()
 '''
+
+#jpg
+frames = []
+
+files = os.listdir(png_dir)
+for idx in tqdm(range(len(files)),desc = 'frame loading'):
+    modnet = cv2.imread(os.path.join(png_dir,'%d.png'%(idx)))
+    modnet = modnet * 255
+    frames.append(modnet.astype(np.uint8))
+
+h,w,l = modnet.shape
+size = (w,h)
+
+output = cv2.VideoWriter(os.path.join(out_dir,'mod_'+origin_file_name),cv2.VideoWriter_fourcc(*'DIVX'),fps,size)
+
+for i in tqdm(range(len(frames)),desc = 'mp4 making'):
+    output.write(frames[i])
+
+output.release()
 
 #seg
 frames = []

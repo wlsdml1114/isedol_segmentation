@@ -16,20 +16,20 @@ model_path='/home/jini1114/git/GFM/models/pretrained/gfm_r34_tt.pth'
 dataset_choice='SAMPLES'
 test_choice='HYBRID'
 pred_choice=3
-ori_dir='/home/jini1114/git/MODNet/input'
-jpg_dir='/home/jini1114/git/MODNet/output'
-seg_dir='/home/jini1114/git/MODNet/segmentation'
-png_dir='/home/jini1114/git/MODNet/temp'
-tr_data_dir='/home/jini1114/git/MODNet/data'
-out_dir='/home/jini1114/git/MODNet/mp4'
-model_dir='/home/jini1114/git/MODNet/model'
+ori_dir='/home/jini1114/git/data/input'
+jpg_dir='/home/jini1114/git/data/output'
+seg_dir='/home/jini1114/git/data/segmentation'
+png_dir='/home/jini1114/git/data/temp'
+tr_data_dir='/home/jini1114/git/data/dataset'
+out_dir='/home/jini1114/git/data/mp4'
+model_dir='/home/jini1114/git/data/model'
 fps=60
 
 for file in "$ori_dir"/*
 do
     echo "$file" task start
 
-    /usr/anaconda3/envs/hair_task/bin/python /home/jini1114/git/MODNet/png2mp4.py\
+    /usr/anaconda3/envs/hair_task/bin/python /home/jini1114/git/isedol_segmentation/png2mp4.py\
         --file_name=$file \
         --jpg_dir=$jpg_dir \
         --png_dir=$png_dir \
