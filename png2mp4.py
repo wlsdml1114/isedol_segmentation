@@ -160,6 +160,7 @@ for i in tqdm(range(len(frames)),desc = 'mp4 making'):
 output_cut.release()
 
 
-#os.system('rm -r '+jpg_dir)
-#os.system('rm -r '+png_dir)
+os.system('rm -r '+jpg_dir)
+os.system('rm -r '+png_dir)
+os.system('rm -r '+out_dir)
 #os.system('rm -r '+gfm_out)
