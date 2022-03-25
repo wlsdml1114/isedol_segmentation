@@ -145,7 +145,7 @@ output.release()
 #cut origin
 frames = []
 
-files = os.listdir(png_dir)
+files = os.listdir(jpg_dir)
 for idx in tqdm(range(len(files)),desc = 'frame loading'):
     img = cv2.imread(os.path.join(jpg_dir,'%d.jpg'%(idx)))
     frames.append(img)
@@ -162,5 +162,5 @@ output_cut.release()
 
 os.system('rm -r '+jpg_dir)
 os.system('rm -r '+png_dir)
-os.system('rm -r '+out_dir)
+os.system('rm -r '+seg_dir)
 #os.system('rm -r '+gfm_out)

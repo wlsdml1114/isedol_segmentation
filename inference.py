@@ -40,7 +40,7 @@ device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cp
 if not(os.path.exists(os.path.join(seg_dir,folder))):
     os.system('mkdir -p '+os.path.join(seg_dir,folder))
     
-model_name = '%s.pt'%(folder) 
+model_name = '%s.pt'%(folder[6:-4]) 
         
 model = torch.load(os.path.join(model_dir,model_name))
 model.eval()
