@@ -23,7 +23,7 @@ def run(input_path,output_path):
     
     input_path = input_path
     output_path = output_path
-    ckpt_path = '/home/jini1114/git/MODNet/pretrained/modnet_photographic_portrait_matting.ckpt'
+    ckpt_path = '/home/jini1114/git/isedol_segmentation/pretrained/modnet_photographic_portrait_matting.ckpt'
 
     # check input arguments
     if not os.path.exists(input_path):

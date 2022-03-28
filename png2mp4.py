@@ -103,13 +103,40 @@ frames = []
 files = os.listdir(png_dir)
 for idx in tqdm(range(len(files)),desc = 'frame loading'):
     modnet = cv2.imread(os.path.join(png_dir,'%d.png'%(idx)))
-    modnet = modnet * 255
-    frames.append(modnet.astype(np.uint8))
+    frames.append(modnet)
 
 h,w,l = modnet.shape
 size = (w,h)
 
 output = cv2.VideoWriter(os.path.join(out_dir,'mod_'+origin_file_name),cv2.VideoWriter_fourcc(*'DIVX'),fps,size)
+
+for i in tqdm(range(len(frames)),desc = 'mp4 making'):
+    output.write(frames[i])
+
+output.release()
+
+
+#jpg
+frames = []
+
+files = os.listdir(png_dir)
+for idx in tqdm(range(len(files)),desc = 'frame loading'):
+    temp = cv2.imread(os.path.join(png_dir,'%d.png'%(idx)))
+    gray = temp[:,:,0]
+    res = cv2.findContours(gray.astype(np.uint8), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
+    contours = res[-2]
+    area = []
+    for i in range(len(contours)):
+        area.append(cv2.contourArea(contours[i]))
+    idx = np.where(np.max(area) == area)[0][0]
+    cv2.drawContours(temp, contours, contourIdx=idx, color=(255,255,255),thickness=-1)
+
+    frames.append(temp.astype(np.uint8))
+
+h,w,c = temp.shape
+size = (w,h)
+
+output = cv2.VideoWriter(os.path.join(out_dir,'modful_'+origin_file_name),cv2.VideoWriter_fourcc(*'DIVX'),fps,size)
 
 for i in tqdm(range(len(frames)),desc = 'mp4 making'):
     output.write(frames[i])
@@ -142,6 +169,36 @@ for i in tqdm(range(len(frames)),desc = 'mp4 making'):
 
 output.release()
 
+
+
+#seg_contour_full
+frames = []
+
+files = os.listdir(seg_dir)
+for idx in tqdm(range(len(files)),desc = 'frame loading'):
+    modnet = cv2.imread(os.path.join(seg_dir,'%d.png'%(idx)))
+    temp = modnet * 255
+    gray = temp[:,:,0]
+    res = cv2.findContours(gray.astype(np.uint8), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
+    contours = res[-2]
+    area = []
+    for i in range(len(contours)):
+        area.append(cv2.contourArea(contours[i]))
+    idx = np.where(np.max(area)==area)[0][0]
+    cv2.drawContours(temp, contours, contourIdx=idx, color=(255,255,255),thickness=-1)
+    frames.append(temp.astype(np.uint8))
+
+h,w,c = temp.shape
+size = (w,h)
+
+output = cv2.VideoWriter(os.path.join(out_dir,'segfull_'+origin_file_name),cv2.VideoWriter_fourcc(*'DIVX'),fps,size)
+
+for i in tqdm(range(len(frames)),desc = 'mp4 making'):
+    output.write(frames[i])
+
+output.release()
+
+
 #cut origin
 frames = []
 
@@ -160,7 +217,7 @@ for i in tqdm(range(len(frames)),desc = 'mp4 making'):
 output_cut.release()
 
 
-os.system('rm -r '+jpg_dir)
-os.system('rm -r '+png_dir)
-os.system('rm -r '+seg_dir)
+#os.system('rm -r '+jpg_dir)
+#os.system('rm -r '+png_dir)
+#os.system('rm -r '+seg_dir)
 #os.system('rm -r '+gfm_out)
