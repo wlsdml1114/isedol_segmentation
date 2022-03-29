@@ -3,6 +3,8 @@ import cv2
 from tqdm import tqdm
 import argparse
 from demo.image_matting.colab.inference2 import run
+import datetime
+print(datetime.datetime.now())
 
 
 def get_args():

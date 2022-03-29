@@ -21,6 +21,8 @@ from dateutil.relativedelta import relativedelta
 from collections import Counter
 from tqdm import tqdm
 import matplotlib.pyplot as plt
+import datetime
+print(datetime.datetime.now())
 
 parser = argparse.ArgumentParser(description='mask rcnn')    
 parser.add_argument('--file_name', required = True, help='folder name')
@@ -55,4 +57,4 @@ for idx in tqdm(range(len(files))):
 
     output = model(torch.tensor([img.transpose(2,0,1)]).to(device))
     cv2.imwrite(os.path.join(seg_dir,folder,'%d.png'%(idx)),
-                output[0]['masks'].detach().cpu().numpy()[0][0])
+                output[0]['masks'].detach().cpu().numpy()[0][0]*255)

@@ -3,7 +3,8 @@ import cv2
 from tqdm import tqdm
 import numpy as np
 import argparse
-
+import datetime
+print(datetime.datetime.now())
 
 def get_args():
 	
@@ -129,8 +130,10 @@ for idx in tqdm(range(len(files)),desc = 'frame loading'):
     for i in range(len(contours)):
         area.append(cv2.contourArea(contours[i]))
     idx = np.where(np.max(area) == area)[0][0]
-    cv2.drawContours(temp, contours, contourIdx=idx, color=(255,255,255),thickness=-1)
-
+    try:
+        cv2.drawContours(temp, contours, contourIdx=idx, color=(255,255,255),thickness=-1)
+    except:
+        pass
     frames.append(temp.astype(np.uint8))
 
 h,w,c = temp.shape
@@ -149,7 +152,6 @@ frames = []
 files = os.listdir(seg_dir)
 for idx in tqdm(range(len(files)),desc = 'frame loading'):
     modnet = cv2.imread(os.path.join(seg_dir,'%d.png'%(idx)))
-    modnet = modnet * 255
     '''
     gray = cv2.cvtColor(modnet, cv2.COLOR_RGB2GRAY)
     res = cv2.findContours(gray.astype(np.uint8), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
@@ -176,8 +178,7 @@ frames = []
 
 files = os.listdir(seg_dir)
 for idx in tqdm(range(len(files)),desc = 'frame loading'):
-    modnet = cv2.imread(os.path.join(seg_dir,'%d.png'%(idx)))
-    temp = modnet * 255
+    temp = cv2.imread(os.path.join(seg_dir,'%d.png'%(idx)))
     gray = temp[:,:,0]
     res = cv2.findContours(gray.astype(np.uint8), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
     contours = res[-2]
@@ -185,7 +186,10 @@ for idx in tqdm(range(len(files)),desc = 'frame loading'):
     for i in range(len(contours)):
         area.append(cv2.contourArea(contours[i]))
     idx = np.where(np.max(area)==area)[0][0]
-    cv2.drawContours(temp, contours, contourIdx=idx, color=(255,255,255),thickness=-1)
+    try:
+        cv2.drawContours(temp, contours, contourIdx=idx, color=(255,255,255),thickness=-1)
+    except :
+        pass
     frames.append(temp.astype(np.uint8))
 
 h,w,c = temp.shape
@@ -220,4 +224,3 @@ output_cut.release()
 #os.system('rm -r '+jpg_dir)
 #os.system('rm -r '+png_dir)
 #os.system('rm -r '+seg_dir)
-#os.system('rm -r '+gfm_out)
