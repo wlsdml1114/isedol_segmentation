@@ -185,8 +185,8 @@ for idx in tqdm(range(len(files)),desc = 'frame loading'):
     area = []
     for i in range(len(contours)):
         area.append(cv2.contourArea(contours[i]))
-    idx = np.where(np.max(area)==area)[0][0]
     try:
+        idx = np.where(np.max(area)==area)[0][0]
         cv2.drawContours(temp, contours, contourIdx=idx, color=(255,255,255),thickness=-1)
     except :
         pass

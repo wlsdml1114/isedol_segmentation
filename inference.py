@@ -56,5 +56,9 @@ for idx in tqdm(range(len(files))):
     img = img/255
 
     output = model(torch.tensor([img.transpose(2,0,1)]).to(device))
-    cv2.imwrite(os.path.join(seg_dir,folder,'%d.png'%(idx)),
-                output[0]['masks'].detach().cpu().numpy()[0][0]*255)
+    try :
+        cv2.imwrite(os.path.join(seg_dir,folder,'%d.png'%(idx)),
+                    output[0]['masks'].detach().cpu().numpy()[0][0]*255)
+    except:
+        cv2.imwrite(os.path.join(seg_dir,folder,'%d.png'%(idx)),
+                    np.zeros(img.shape[:2]))
