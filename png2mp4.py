@@ -129,8 +129,8 @@ for idx in tqdm(range(len(files)),desc = 'frame loading'):
     area = []
     for i in range(len(contours)):
         area.append(cv2.contourArea(contours[i]))
-    idx = np.where(np.max(area) == area)[0][0]
     try:
+        idx = np.where(np.max(area) == area)[0][0]
         cv2.drawContours(temp, contours, contourIdx=idx, color=(255,255,255),thickness=-1)
     except:
         pass
@@ -152,6 +152,7 @@ frames = []
 files = os.listdir(seg_dir)
 for idx in tqdm(range(len(files)),desc = 'frame loading'):
     modnet = cv2.imread(os.path.join(seg_dir,'%d.png'%(idx)))
+    modnet = modnet*255
     '''
     gray = cv2.cvtColor(modnet, cv2.COLOR_RGB2GRAY)
     res = cv2.findContours(gray.astype(np.uint8), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
@@ -179,6 +180,7 @@ frames = []
 files = os.listdir(seg_dir)
 for idx in tqdm(range(len(files)),desc = 'frame loading'):
     temp = cv2.imread(os.path.join(seg_dir,'%d.png'%(idx)))
+    temp = temp*255
     gray = temp[:,:,0]
     res = cv2.findContours(gray.astype(np.uint8), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
     contours = res[-2]
