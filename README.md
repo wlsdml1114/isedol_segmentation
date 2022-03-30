@@ -24,7 +24,18 @@
 
 - Results
 
+[이세계아이돌] 비챤 취기를 빌려 반응영상 (딥러닝으로 아바타 누끼작업)
+
 [![챤기를 빌려 반응영상](http://img.youtube.com/vi/wcX7fQqaIe8/0.jpg)](https://youtu.be/wcX7fQqaIe8?t=0s)
+
+[이세계아이돌] 2집 겨울봄 반응영상 (딥러닝으로 아바타 누끼작업)
+
 [![겨울봄 반응영상](http://img.youtube.com/vi/KH5TlW0Njvg/0.jpg)](https://youtu.be/KH5TlW0Njvg?t=0s)
+
+[이세계아이돌] 주르르 사이언티스트 반응영상 (딥러닝으로 아바타 누끼작업)
+
 [![사이언티스트 반응영상](http://img.youtube.com/vi/o1p1PnMw7zc/0.jpg)](https://youtu.be/o1p1PnMw7zc?t=0s)
-[![사이언티스트 반응영상](http://img.youtube.com/vi/4s2UVhjfpDY/0.jpg)](https://youtu.be/4s2UVhjfpDY?t=0s)
+
+[이세계아이돌] 남세돌 리와인드 반응영상 (딥러닝으로 아바타 누끼작업)
+
+[![남세돌 반응영상](http://img.youtube.com/vi/4s2UVhjfpDY/0.jpg)](https://youtu.be/4s2UVhjfpDY?t=0s)
