@@ -39,3 +39,11 @@
 [이세계아이돌] 남세돌 리와인드 반응영상 (딥러닝으로 아바타 누끼작업)
 
 [![남세돌 반응영상](http://img.youtube.com/vi/4s2UVhjfpDY/0.jpg)](https://youtu.be/4s2UVhjfpDY?t=0s)
+
+
+- Future work
+  -  Train dataset을 좀 더 다양하게 준비해서 모델 학습
+  -  Edge detection(cv2.canny)를 이용해서 edge를 검출한뒤에 segmentation결과와 ensemble
+    -  Edge를 이용하는 방법에 대한 고찰 필요
+  -  다른 최신 SOTA 모델 및 back-bone 적용 (ex// HRNet)
+  -  etc.(생각나면 추가)
