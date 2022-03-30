@@ -15,14 +15,14 @@
   - Image matting의 한계를 느끼고 semantic segmentation으로 넘어감
   - Image matting으로 얻은 데이터를 전수점검해서 깔끔하게 잘 추출된 이미지만 segmentation에서 GT로 사용해서 transfer learning 진행
 ***
-- Semantic segmentation
+# Semantic segmentation
   - Image matting으로 mask를 모든 프레임에 대해 추출한 다음에 잘 따진 누끼만 학습용 데이터로 사용,
   - 이세돌 개인별로 모델생성(총 6개)
   - Data augmentation 진행 (flip, crop, resize 등)
   - 세구님 후드티랑 주르르님 리본은 드디어 인식을 어느정도하기 시작했는데, 아직도 배경이 혼란스러운경우에는 인식이 잘 되지 않는 경우가 많음
   - 릴파님 포니테일은 아무리해도 잘 안따짐, 아바타를 빌려서 직접 GT데이터를 더 확실하게 만든 다음에 학습을 진행해야하나 고민중
 ***
-- Results
+# Results
 
 [이세계아이돌] 비챤 취기를 빌려 반응영상 (딥러닝으로 아바타 누끼작업)
 
@@ -41,7 +41,7 @@
 [![남세돌 반응영상](http://img.youtube.com/vi/4s2UVhjfpDY/0.jpg)](https://youtu.be/4s2UVhjfpDY?t=0s)
 
 ***
-- Future work
+# Future work
   -  Train dataset을 좀 더 다양하게 준비해서 모델 학습
   -  Edge detection(cv2.canny)를 이용해서 edge를 검출한뒤에 segmentation결과와 ensemble
     -  Edge를 이용하는 방법에 대한 고찰 필요
