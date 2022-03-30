@@ -23,4 +23,7 @@
   - 릴파님 포니테일은 아무리해도 잘 안따짐, 아바타를 빌려서 직접 GT데이터를 더 확실하게 만든 다음에 학습을 진행해야하나 고민중
 
 - Results
+
 [![챤기를 빌려 반응영상](http://img.youtube.com/vi/wcX7fQqaIe8/0.jpg)](https://youtu.be/wcX7fQqaIe8?t=0s)
+[![겨울봄 반응영상](http://img.youtube.com/vi/KH5TlW0Njvg/0.jpg)](https://youtu.be/KH5TlW0Njvg?t=0s)
+[![사이언티스트 반응영상](http://img.youtube.com/vi/o1p1PnMw7zc/0.jpg)](https://youtu.be/o1p1PnMw7zc?t=0s)
