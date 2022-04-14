@@ -23,30 +23,36 @@ png_dir='/home/jini1114/git/data/temp'
 tr_data_dir='/home/jini1114/git/data/dataset'
 out_dir='/home/jini1114/git/data/mp4'
 model_dir='/home/jini1114/git/data/model'
+wav_dir='/home/jini1114/git/mdx-net-submission/data'
 fps=60
 
-for file in "$ori_dir"/*
-do
-    echo "$file" task start
-    
-    /usr/anaconda3/envs/hair_task/bin/python /home/jini1114/git/isedol_segmentation/making_matte.py\
-        --ori_dir=$ori_dir \
-        --file_name=$file \
-        --png_dir=$png_dir \
-        --jpg_dir=$jpg_dir 
+file=$1
+echo "$file" task start
 
-    /usr/anaconda3/envs/hair_task/bin/python /home/jini1114/git/isedol_segmentation/inference.py\
-        --seg_dir=$seg_dir \
-        --file_name=$file \
-        --jpg_dir=$jpg_dir \
-        --model_dir=$model_dir 
+/usr/anaconda3/envs/hair_task/bin/python /home/jini1114/git/isedol_segmentation/making_matte.py\
+    --ori_dir=$ori_dir \
+    --file_name=$file \
+    --png_dir=$png_dir \
+    --jpg_dir=$jpg_dir \
+    --token=$SLACK_TOKEN \
+    --wav_dir=$wav_dir
 
-    /usr/anaconda3/envs/hair_task/bin/python /home/jini1114/git/isedol_segmentation/png2mp4.py\
-        --file_name=$file \
-        --jpg_dir=$jpg_dir \
-        --png_dir=$png_dir \
-        --out_dir=$out_dir \
-        --fps=$fps \
-        --seg_dir=$seg_dir
+/usr/anaconda3/envs/mdx-net/bin/python /home/jini1114/git/mdx-net-submission/predict_blend.py
+
+/usr/anaconda3/envs/hair_task/bin/python /home/jini1114/git/isedol_segmentation/inference.py\
+    --seg_dir=$seg_dir \
+    --file_name=$file \
+    --jpg_dir=$jpg_dir \
+    --model_dir=$model_dir \
+    --token=$SLACK_TOKEN
+
+/usr/anaconda3/envs/hair_task/bin/python /home/jini1114/git/isedol_segmentation/png2mp4.py\
+    --file_name=$file \
+    --jpg_dir=$jpg_dir \
+    --png_dir=$png_dir \
+    --out_dir=$out_dir \
+    --fps=$fps \
+    --seg_dir=$seg_dir \
+    --token=$SLACK_TOKEN \
+    --wav_dir=$wav_dir
     
-done

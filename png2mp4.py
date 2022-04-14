@@ -4,6 +4,8 @@ from tqdm import tqdm
 import numpy as np
 import argparse
 import datetime
+import requests
+
 print(datetime.datetime.now())
 
 def get_args():
@@ -24,6 +26,8 @@ def get_args():
 	parser.add_argument('--seg_dir', type=str, required=False,default='/home/jini1114/git/MODNet/temp')
 	parser.add_argument('--out_dir', type=str, required=False,default='/home/jini1114/git/MODNet/mp4')
 	parser.add_argument('--fps', type=int, required=False,default=60)
+	parser.add_argument('--token', type=str, required=True)
+	parser.add_argument('--wav_dir', type=str, required=True)
 	args = parser.parse_args()
 	return args
 
@@ -63,10 +67,14 @@ def scale_contour(cnt, scale):
 
 args = get_args()
 
+slack_token = args.token
 file_name = args.file_name
 file_names = file_name.split('/')
 origin_file_name = file_names[-1]
 
+
+wav_input_dir = os.path.join(args.wav_dir,'test',origin_file_name)
+wav_output_dir = os.path.join(args.wav_dir,'results/baseline',origin_file_name)
 jpg_dir = os.path.join(args.jpg_dir,origin_file_name)
 png_dir = os.path.join(args.png_dir,origin_file_name)
 seg_dir = os.path.join(args.seg_dir,origin_file_name)
@@ -221,8 +229,17 @@ for i in tqdm(range(len(frames)),desc = 'mp4 making'):
     output_cut.write(frames[i])
 
 output_cut.release()
+token = slack_token
+channel = "#finish-alarm"
+text = origin_file_name+" png2mp4 finish"
 
+requests.post("https://slack.com/api/chat.postMessage",
+    headers={"Authorization": "Bearer "+token},
+    data={"channel": channel,"text": text})
 
+os.system('mv '+os.path.join(wav_output_dir,'vocals.wav')+' '+os.path.join(out_dir,'%s_vocal.wav'%(origin_file_name[:-4])))
 #os.system('rm -r '+jpg_dir)
 #os.system('rm -r '+png_dir)
 #os.system('rm -r '+seg_dir)
+#os.system('rm -r '+wav_output_dir)
+#os.system('rm -r '+wav_input_dir)

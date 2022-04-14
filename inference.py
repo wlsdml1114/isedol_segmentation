@@ -22,6 +22,7 @@ from collections import Counter
 from tqdm import tqdm
 import matplotlib.pyplot as plt
 import datetime
+import requests
 print(datetime.datetime.now())
 
 parser = argparse.ArgumentParser(description='mask rcnn')    
@@ -29,8 +30,10 @@ parser.add_argument('--file_name', required = True, help='folder name')
 parser.add_argument('--model_dir', required = True, help='folder name')
 parser.add_argument('--jpg_dir', required = True, help='folder name')
 parser.add_argument('--seg_dir', required = True, help='folder name')
+parser.add_argument('--token', type=str, required=True) 
 args = parser.parse_args()
 
+slack_token = args.token
 names = args.file_name.split('/')
 folder = names[-1]
 seg_dir=args.seg_dir
@@ -61,3 +64,11 @@ for idx in tqdm(range(len(files))):
     except:
         cv2.imwrite(os.path.join(seg_dir,folder,'%d.png'%(idx)),
                     np.zeros(img.shape[:2]))
+
+token = slack_token
+channel = "#finish-alarm"
+text = folder+" inference finish"
+
+requests.post("https://slack.com/api/chat.postMessage",
+    headers={"Authorization": "Bearer "+token},
+    data={"channel": channel,"text": text})
