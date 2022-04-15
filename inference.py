@@ -1,26 +1,11 @@
 import os
 import numpy as np
 import torch
-import math
 import cv2
-import sys
-import time
 import argparse
 from PIL import Image
-import torchvision
-from torch import nn, Tensor
-from torchvision.transforms import functional as F
-from torchvision.transforms import transforms as T
-from typing import List, Tuple, Dict, Optional
-from torchvision.models.detection.faster_rcnn import FastRCNNPredictor
-from torchvision.models.detection import FasterRCNN
-from torchvision.models.detection.rpn import AnchorGenerator
-from torchvision.models.detection.mask_rcnn import MaskRCNNPredictor
 from datetime import datetime, timedelta
-from dateutil.relativedelta import relativedelta
-from collections import Counter
 from tqdm import tqdm
-import matplotlib.pyplot as plt
 import datetime
 import requests
 print(datetime.datetime.now())
@@ -28,6 +13,7 @@ print(datetime.datetime.now())
 parser = argparse.ArgumentParser(description='mask rcnn')    
 parser.add_argument('--file_name', required = True, help='folder name')
 parser.add_argument('--model_dir', required = True, help='folder name')
+parser.add_argument('--seg_num_dir', required = True, help='folder name')
 parser.add_argument('--jpg_dir', required = True, help='folder name')
 parser.add_argument('--seg_dir', required = True, help='folder name')
 parser.add_argument('--token', type=str, required=True) 
@@ -39,11 +25,14 @@ folder = names[-1]
 seg_dir=args.seg_dir
 jpg_dir=args.jpg_dir
 model_dir = args.model_dir
+seg_num_dir = args.seg_num_dir
 
 device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
 
 if not(os.path.exists(os.path.join(seg_dir,folder))):
     os.system('mkdir -p '+os.path.join(seg_dir,folder))
+if not(os.path.exists(os.path.join(seg_num_dir,folder))):
+    os.system('mkdir -p '+os.path.join(seg_num_dir,folder))
     
 model_name = '%s.pt'%(folder[6:-4]) 
         
@@ -61,10 +50,14 @@ for idx in tqdm(range(len(files))):
     try :
         cv2.imwrite(os.path.join(seg_dir,folder,'%d.png'%(idx)),
                     output[0]['masks'].detach().cpu().numpy()[0][0])
+        np.save(os.path.join(seg_num_dir,folder,'%d.npy'%(idx)),
+                    (output[0]['masks'].detach().cpu().numpy()[0][0]*255).astype(np.uint8))
     except:
         cv2.imwrite(os.path.join(seg_dir,folder,'%d.png'%(idx)),
                     np.zeros(img.shape[:2]))
-
+        np.save(os.path.join(seg_num_dir,folder,'%d.npy'%(idx)),
+                    np.zeros(img.shape[:2]))
+    
 token = slack_token
 channel = "#finish-alarm"
 text = folder+" inference finish"

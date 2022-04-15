@@ -43,11 +43,6 @@ if not(os.path.exists(png_dir)) :
 if not(os.path.exists(wav_dir)) : 
     os.system('mkdir -p ' + wav_dir)
 
-print('mp4 to wav')
-
-command = "ffmpeg -i {} -ac 2 -f wav {}".format(file_name, os.path.join(wav_dir, 'mixture.wav'))
-subprocess.call(command, shell=True)
-
 cap = cv2.VideoCapture(os.path.join(ori_dir,origin_file_name))
 
 count = 0

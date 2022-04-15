@@ -27,7 +27,7 @@ def get_args():
 	parser.add_argument('--out_dir', type=str, required=False,default='/home/jini1114/git/MODNet/mp4')
 	parser.add_argument('--fps', type=int, required=False,default=60)
 	parser.add_argument('--token', type=str, required=True)
-	parser.add_argument('--wav_dir', type=str, required=True)
+	parser.add_argument('--wav_dir', type=str, required=True);parser.add_argument('--seg_num_dir', type=str, required=True)
 	args = parser.parse_args()
 	return args
 
@@ -78,6 +78,7 @@ wav_output_dir = os.path.join(args.wav_dir,'results/baseline',origin_file_name)
 jpg_dir = os.path.join(args.jpg_dir,origin_file_name)
 png_dir = os.path.join(args.png_dir,origin_file_name)
 seg_dir = os.path.join(args.seg_dir,origin_file_name)
+seg_num_dir = os.path.join(args.seg_num_dir,origin_file_name)
 out_dir = args.out_dir
 fps = args.fps
 '''
@@ -213,6 +214,29 @@ for i in tqdm(range(len(frames)),desc = 'mp4 making'):
 output.release()
 
 
+
+#seg_numpy
+frames = []
+
+files = os.listdir(seg_num_dir)
+for idx in tqdm(range(len(files)),desc = 'frame loading'):
+    modnet = np.read(os.path.join(seg_num_dir,'%d.npy'%(idx)))
+    frames.append(modnet)
+
+h,w,l = modnet.shape
+size = (w,h)
+
+output = cv2.VideoWriter(os.path.join(out_dir,'seg_numpy_'+origin_file_name),cv2.VideoWriter_fourcc(*'DIVX'),fps,size)
+
+for i in tqdm(range(len(frames)),desc = 'mp4 making'):
+    output.write(frames[i])
+
+output.release()
+
+
+
+
+
 #cut origin
 frames = []
 
@@ -237,9 +261,7 @@ requests.post("https://slack.com/api/chat.postMessage",
     headers={"Authorization": "Bearer "+token},
     data={"channel": channel,"text": text})
 
-os.system('mv '+os.path.join(wav_output_dir,'vocals.wav')+' '+os.path.join(out_dir,'%s_vocal.wav'%(origin_file_name[:-4])))
 #os.system('rm -r '+jpg_dir)
 #os.system('rm -r '+png_dir)
 #os.system('rm -r '+seg_dir)
-#os.system('rm -r '+wav_output_dir)
-#os.system('rm -r '+wav_input_dir)
+#os.system('rm -r '+seg_num_dir)

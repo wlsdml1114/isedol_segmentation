@@ -28,13 +28,14 @@ fps=60
 for file in "$ori_dir"/*
 do
     echo "$file" task start
-    /usr/anaconda3/envs/hair_task/bin/python /home/jini1114/git/isedol_segmentation/inference.py\
+    /home/jini1114/.conda/envs/isedol/bin/python /home/jini1114/git/isedol_segmentation/inference.py\
         --seg_dir=$seg_dir \
         --file_name=$file \
         --jpg_dir=$jpg_dir \
-        --model_dir=$model_dir 
+        --model_dir=$model_dir \
+        --token=$SLACK_TOKEN
 
-    /usr/anaconda3/envs/hair_task/bin/python /home/jini1114/git/isedol_segmentation/png2mp4.py\
+    /home/jini1114/.conda/envs/isedol/bin/python /home/jini1114/git/isedol_segmentation/png2mp4.py\
         --file_name=$file \
         --jpg_dir=$jpg_dir \
         --png_dir=$png_dir \
