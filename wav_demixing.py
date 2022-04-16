@@ -22,5 +22,5 @@ files = os.listdir(ori_dir)
 for file in files:
 	if not(os.path.exists(os.path.join(wav_dir,'test',file))) : 
 		os.system('mkdir -p ' + os.path.join(wav_dir,'test',file))
-	command = "ffmpeg -i {} -ac 2 -f wav {}".format(os.path.join(ori_dir,file), os.path.join(wav_dir,'test',file, 'mixture.wav'))
+	command = "ffmpeg -y -i {} -ac 2 -f wav {}".format(os.path.join(ori_dir,file), os.path.join(wav_dir,'test',file, 'mixture.wav'))
 	subprocess.call(command, shell=True)

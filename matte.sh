@@ -19,7 +19,6 @@ pred_choice=3
 ori_dir='/home/jini1114/git/data/input'
 jpg_dir='/home/jini1114/git/data/output'
 seg_dir='/home/jini1114/git/data/segmentation'
-seg_num_dir='/home/jini1114/git/data/seg_numpy'
 png_dir='/home/jini1114/git/data/temp'
 tr_data_dir='/home/jini1114/git/data/dataset'
 out_dir='/home/jini1114/git/data/mp4'
@@ -44,7 +43,6 @@ echo "$file" task start
     --seg_dir=$seg_dir \
     --file_name=$file \
     --jpg_dir=$jpg_dir \
-    --seg_num_dir=$seg_num_dir \
     --model_dir=$model_dir \
     --token=$SLACK_TOKEN
 
@@ -53,7 +51,6 @@ echo "$file" task start
     --jpg_dir=$jpg_dir \
     --png_dir=$png_dir \
     --out_dir=$out_dir \
-    --seg_num_dir=$seg_num_dir \
     --fps=$fps \
     --seg_dir=$seg_dir \
     --token=$SLACK_TOKEN \

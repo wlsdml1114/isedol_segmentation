@@ -19,10 +19,12 @@ pred_choice=3
 ori_dir='/home/jini1114/git/data/input'
 jpg_dir='/home/jini1114/git/data/output'
 seg_dir='/home/jini1114/git/data/segmentation'
+seg_num_dir='/home/jini1114/git/data/seg_numpy'
 png_dir='/home/jini1114/git/data/temp'
 tr_data_dir='/home/jini1114/git/data/dataset'
 out_dir='/home/jini1114/git/data/mp4'
 model_dir='/home/jini1114/git/data/model'
+wav_dir='/home/jini1114/git/mdx-net-submission/data'
 fps=60
 
 for file in "$ori_dir"/*
@@ -34,7 +36,10 @@ do
         --jpg_dir=$jpg_dir \
         --png_dir=$png_dir \
         --out_dir=$out_dir \
+        --seg_num_dir=$seg_num_dir \
         --fps=$fps \
-        --seg_dir=$seg_dir
+        --seg_dir=$seg_dir \
+        --token=$SLACK_TOKEN \
+        --wav_dir=$wav_dir
     
 done

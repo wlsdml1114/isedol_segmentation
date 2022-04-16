@@ -13,7 +13,6 @@ print(datetime.datetime.now())
 parser = argparse.ArgumentParser(description='mask rcnn')    
 parser.add_argument('--file_name', required = True, help='folder name')
 parser.add_argument('--model_dir', required = True, help='folder name')
-parser.add_argument('--seg_num_dir', required = True, help='folder name')
 parser.add_argument('--jpg_dir', required = True, help='folder name')
 parser.add_argument('--seg_dir', required = True, help='folder name')
 parser.add_argument('--token', type=str, required=True) 
@@ -25,14 +24,11 @@ folder = names[-1]
 seg_dir=args.seg_dir
 jpg_dir=args.jpg_dir
 model_dir = args.model_dir
-seg_num_dir = args.seg_num_dir
 
 device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
 
 if not(os.path.exists(os.path.join(seg_dir,folder))):
     os.system('mkdir -p '+os.path.join(seg_dir,folder))
-if not(os.path.exists(os.path.join(seg_num_dir,folder))):
-    os.system('mkdir -p '+os.path.join(seg_num_dir,folder))
     
 model_name = '%s.pt'%(folder[6:-4]) 
         
@@ -49,13 +45,9 @@ for idx in tqdm(range(len(files))):
     output = model(torch.tensor([img.transpose(2,0,1)]).to(device))
     try :
         cv2.imwrite(os.path.join(seg_dir,folder,'%d.png'%(idx)),
-                    output[0]['masks'].detach().cpu().numpy()[0][0])
-        np.save(os.path.join(seg_num_dir,folder,'%d.npy'%(idx)),
-                    (output[0]['masks'].detach().cpu().numpy()[0][0]*255).astype(np.uint8))
+                    output[0]['masks'].detach().cpu().numpy()[0][0]*255)
     except:
         cv2.imwrite(os.path.join(seg_dir,folder,'%d.png'%(idx)),
-                    np.zeros(img.shape[:2]))
-        np.save(os.path.join(seg_num_dir,folder,'%d.npy'%(idx)),
                     np.zeros(img.shape[:2]))
     
 token = slack_token

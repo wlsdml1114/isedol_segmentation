@@ -40,8 +40,6 @@ if not(os.path.exists(jpg_dir)) :
     os.system('mkdir -p ' + jpg_dir)
 if not(os.path.exists(png_dir)) : 
     os.system('mkdir -p ' + png_dir)
-if not(os.path.exists(wav_dir)) : 
-    os.system('mkdir -p ' + wav_dir)
 
 cap = cv2.VideoCapture(os.path.join(ori_dir,origin_file_name))
 
