@@ -72,6 +72,7 @@ folders = os.listdir(ori_dir)
 
 for folder in folders:
 
+for folder in file_names:
     print(folder,'data augmentation start')
 
     for num in os.listdir(os.path.join(ori_dir,folder)):
