@@ -191,23 +191,6 @@ for i in tqdm(range(len(frames)),desc = 'mp4 making'):
 output.release()
 
 
-<<<<<<< Updated upstream
-#seg
-frames = []
-THRESHOLD = 127
-
-files = os.listdir(seg_dir)
-for idx in tqdm(range(len(files)),desc = 'frame loading'):
-    modnet = cv2.imread(os.path.join(seg_dir,'%d.png'%(idx)))
-    modnet[modnet>THRESHOLD] = 255
-    modnet[modnet<=THRESHOLD] = 0
-    frames.append(modnet.astype(np.uint8))
-
-h,w,l = modnet.shape
-size = (w,h)
-
-output = cv2.VideoWriter(os.path.join(out_dir,'segthre_'+origin_file_name),cv2.VideoWriter_fourcc(*'DIVX'),fps,size)
-=======
 ##
 
 frames = []
@@ -228,15 +211,12 @@ h,w,l = dst.shape
 size = (w,h)
 
 output = cv2.VideoWriter(os.path.join(out_dir,'seg_filter_'+origin_file_name),cv2.VideoWriter_fourcc(*'DIVX'),fps,size)
->>>>>>> Stashed changes
 
 for i in tqdm(range(len(frames)),desc = 'mp4 making'):
     output.write(frames[i])
 
 output.release()
 
-<<<<<<< Updated upstream
-=======
 
 ##
 
@@ -266,7 +246,6 @@ for i in tqdm(range(len(frames)),desc = 'mp4 making'):
     output.write(frames[i])
 
 output.release()
->>>>>>> Stashed changes
 
 #seg_contour_full
 frames = []

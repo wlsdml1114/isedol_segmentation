@@ -17,16 +17,9 @@ echo "$file" task start
     --file_name=$file \
     --png_dir=$png_dir \
     --jpg_dir=$jpg_dir \
-<<<<<<< Updated upstream
     --token=$SLACK_TOKEN
     
 /home/smartai/anaconda3/envs/seg/bin/python /data/codes/isedol_segmentation/inference.py\
-=======
-    --token=$SLACK_TOKEN \
-    --wav_dir=$wav_dir
-
-/usr/anaconda3/envs/hair_task/bin/python /home/jini1114/git/isedol_segmentation/inference.py\
->>>>>>> Stashed changes
     --seg_dir=$seg_dir \
     --file_name=$file \
     --jpg_dir=$jpg_dir \

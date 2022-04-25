@@ -9,8 +9,6 @@ import torchvision.transforms.functional as TF
 import configparser
 from PIL import Image
 
-<<<<<<< Updated upstream
-=======
 ori_dir = '/home/jini1114/git/data/dataset'
 aug_dir = '/home/jini1114/git/data/augmentation'
 
@@ -65,7 +63,6 @@ for folder in folders:
 '''
 config = configparser.ConfigParser()    
 config.read('./setting.ini', encoding='CP949') 
->>>>>>> Stashed changes
 
 ori_dir = '/data/codes/data/dataset'
 aug_dir = '/data/codes/data/augmen'
@@ -75,10 +72,6 @@ folders = os.listdir(ori_dir)
 
 for folder in folders:
 
-<<<<<<< Updated upstream
-=======
-for folder in file_names:
->>>>>>> Stashed changes
     print(folder,'data augmentation start')
 
     for num in os.listdir(os.path.join(ori_dir,folder)):

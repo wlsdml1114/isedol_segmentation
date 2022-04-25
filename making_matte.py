@@ -57,10 +57,6 @@ while True :
         cv2.imwrite(os.path.join(jpg_dir,'%d.jpg'%(count)),frame[400:,1200:,:])
     count+=1
 
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 token = slack_token
 channel = "#finish-alarm"
 text = origin_file_name+" making matte finish"
