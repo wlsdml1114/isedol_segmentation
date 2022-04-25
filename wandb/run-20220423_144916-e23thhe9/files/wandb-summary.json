@@ -1,1 +1,0 @@
-{"loss_classifier": 0.04831387847661972, "loss_box_reg": 0.11313224583864212, "loss_mask": 0.06829781085252762, "loss_objectness": 0.009335719980299473, "loss_rpn_box_reg": 0.0009744534618221223, "_timestamp": 1650693022, "_runtime": 66, "_step": 86}

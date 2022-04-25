@@ -1,4 +1,0 @@
-
-Device: cpu
-/home/smartai/anaconda3/envs/seg/lib/python3.6/site-packages/torch/cuda/__init__.py:52: UserWarning: CUDA initialization: CUDA driver initialization failed, you might not have a CUDA gpu. (Triggered internally at  /pytorch/c10/cuda/CUDAFunctions.cpp:100.)
-  return torch._C._cuda_getDeviceCount() > 0
