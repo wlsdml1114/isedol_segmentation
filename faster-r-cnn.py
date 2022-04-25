@@ -22,6 +22,8 @@ from datetime import datetime, timedelta
 from dateutil.relativedelta import relativedelta
 from collections import Counter
 from tqdm import tqdm
+import wandb
+
 
 class Compose(object):
     def __init__(self, transforms):
@@ -190,7 +192,7 @@ def get_transform(train):
     return Compose(transforms)
 
 
-def train_one_epoch(model, optimizer, data_loader, device, epoch, print_freq):
+def train_one_epoch(model, optimizer, data_loader, device, epoch, wandb, print_freq):
     model.train()
     metric_logger = utils.MetricLogger(delimiter="  ")
     metric_logger.add_meter('lr', utils.SmoothedValue(window_size=1, fmt='{value:.6f}'))
@@ -212,6 +214,8 @@ def train_one_epoch(model, optimizer, data_loader, device, epoch, print_freq):
         
         loss_dict = model(images, target)
 
+        wandb.log(loss_dict)
+        
         losses = sum(loss for loss in loss_dict.values())
         # reduce losses over all GPUs for logging purposes
         loss_dict_reduced = utils.reduce_dict(loss_dict)
@@ -239,21 +243,24 @@ def train_one_epoch(model, optimizer, data_loader, device, epoch, print_freq):
 
 parser = argparse.ArgumentParser(description='mask rcnn')    
 parser.add_argument('--name', required = True, help='folder name')
-parser.add_argument('--tr_data_dir', required = True, help='folder name')
-parser.add_argument('--aug_dir', required = True, help='folder name')
-parser.add_argument('--model_dir', required = True, help='folder name')
 args = parser.parse_args()
 
 #set root
-names = args.name.split('/')
-name = names[-1]
-data_path = os.path.join(args.aug_dir,name)
-model_path = args.model_dir
+name = args.name
+data_path = os.path.join('/data/codes/data/augmen/',name)
+model_path = '/data/codes/data/model/'
 #Origin_path = '/mnt/nasmnt/sat'
 
-# �н��� GPU�� �����ϵ� GPU�� �������� ������ CPU�� �մϴ�
-device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
+wandb.init(project="segmentation", entity="engui")
+wandb.run.name = name
 
+# �н��� GPU�� �����ϵ� GPU�� �������� ������ CPU�� �մϴ�
+#device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+print('Device:', device)
+print('Current cuda device:', torch.cuda.current_device())
+print('Count of using GPUs:', torch.cuda.device_count())
 # �츮 �����ͼ��� �� ���� Ŭ������ �����ϴ� - ���� ���
 num_classes = 2
 # �����ͼ°� ���ǵ� ��ȯ���� ����մϴ�
@@ -268,8 +275,10 @@ indices = torch.randperm(len(dataset)).tolist()
 dataset_test = torch.utils.data.Subset(dataset, indices[8:])
 '''
 # ������ �δ��� �н���� ���������� �����մϴ�
+batch_size = 8
+lr = 0.005
 data_loader = torch.utils.data.DataLoader(
-    dataset, batch_size=16, shuffle=True, num_workers=2,
+    dataset, batch_size=batch_size, shuffle=True, num_workers=2,
     collate_fn=utils.collate_fn)
 '''
 data_loader_test = torch.utils.data.DataLoader(
@@ -284,19 +293,25 @@ model.to(device)
 
 # ��Ƽ������(Optimizer)�� ����ϴ�
 params = [p for p in model.parameters() if p.requires_grad]
-optimizer = torch.optim.SGD(params, lr=0.005,
+optimizer = torch.optim.SGD(params, lr=lr,
                             momentum=0.9, weight_decay=0.0005)
 # �н��� �����췯�� ����ϴ�
 lr_scheduler = torch.optim.lr_scheduler.StepLR(optimizer,
                                                 step_size=3,
                                                 gamma=0.1)
 
-# 10 ����ũ��ŭ �н��غ��ô�
 num_epochs = 5
+
+wandb.config = {
+  "learning_rate": lr,
+  "epochs": num_epochs,
+  "batch_size": batch_size
+}
+
 
 for epoch in range(num_epochs):
     # 1 ����ũ���� �н��ϰ�, 10ȸ ���� ����մϴ�
-    train_one_epoch(model, optimizer, data_loader, device, epoch, print_freq=1)
+    train_one_epoch(model, optimizer, data_loader, device, epoch, wandb, print_freq=1)
     # �н����� ������Ʈ �մϴ�
     lr_scheduler.step()
     # �׽�Ʈ �����ͼ¿��� �򰡸� �մϴ�

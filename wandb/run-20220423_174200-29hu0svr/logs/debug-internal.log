@@ -1,0 +1,156 @@
+2022-04-23 17:42:01,008 INFO    MainThread:30812 [internal.py:wandb_internal():93] W&B internal server running at pid: 30812, started at: 2022-04-23 17:42:01.008297
+2022-04-23 17:42:01,010 INFO    WriterThread:30812 [datastore.py:open_for_write():75] open: /data/codes/isedol_segmentation/wandb/run-20220423_174200-29hu0svr/run-29hu0svr.wandb
+2022-04-23 17:42:01,013 DEBUG   SenderThread:30812 [sender.py:send():232] send: header
+2022-04-23 17:42:01,014 DEBUG   SenderThread:30812 [sender.py:send():232] send: run
+2022-04-23 17:42:01,460 DEBUG   HandlerThread:30812 [handler.py:handle_request():141] handle_request: check_version
+2022-04-23 17:42:01,465 INFO    SenderThread:30812 [dir_watcher.py:__init__():166] watching files in: /data/codes/isedol_segmentation/wandb/run-20220423_174200-29hu0svr/files
+2022-04-23 17:42:01,466 INFO    SenderThread:30812 [sender.py:_start_run_threads():814] run started: 29hu0svr with start time 1650703320
+2022-04-23 17:42:01,467 DEBUG   SenderThread:30812 [sender.py:send():232] send: summary
+2022-04-23 17:42:01,467 INFO    SenderThread:30812 [sender.py:_save_file():946] saving file wandb-summary.json with policy end
+2022-04-23 17:42:01,467 DEBUG   SenderThread:30812 [sender.py:send_request():246] send_request: check_version
+2022-04-23 17:42:01,554 DEBUG   HandlerThread:30812 [handler.py:handle_request():141] handle_request: run_start
+2022-04-23 17:42:01,559 DEBUG   HandlerThread:30812 [meta.py:__init__():35] meta init
+2022-04-23 17:42:01,560 DEBUG   HandlerThread:30812 [meta.py:__init__():49] meta init done
+2022-04-23 17:42:01,560 DEBUG   HandlerThread:30812 [meta.py:probe():209] probe
+2022-04-23 17:42:01,561 DEBUG   HandlerThread:30812 [meta.py:_setup_git():199] setup git
+2022-04-23 17:42:01,582 DEBUG   HandlerThread:30812 [meta.py:_setup_git():206] setup git done
+2022-04-23 17:42:01,583 DEBUG   HandlerThread:30812 [meta.py:_save_pip():53] save pip
+2022-04-23 17:42:01,583 DEBUG   HandlerThread:30812 [meta.py:_save_pip():67] save pip done
+2022-04-23 17:42:01,583 DEBUG   HandlerThread:30812 [meta.py:_save_conda():74] save conda
+2022-04-23 17:42:02,470 INFO    Thread-7  :30812 [dir_watcher.py:_on_file_created():213] file/dir created: /data/codes/isedol_segmentation/wandb/run-20220423_174200-29hu0svr/files/requirements.txt
+2022-04-23 17:42:02,470 INFO    Thread-7  :30812 [dir_watcher.py:_on_file_created():213] file/dir created: /data/codes/isedol_segmentation/wandb/run-20220423_174200-29hu0svr/files/wandb-summary.json
+2022-04-23 17:42:02,471 INFO    Thread-7  :30812 [dir_watcher.py:_on_file_created():213] file/dir created: /data/codes/isedol_segmentation/wandb/run-20220423_174200-29hu0svr/files/conda-environment.yaml
+2022-04-23 17:42:03,166 DEBUG   HandlerThread:30812 [meta.py:_save_conda():84] save conda done
+2022-04-23 17:42:03,166 DEBUG   HandlerThread:30812 [meta.py:probe():247] probe done
+2022-04-23 17:42:03,173 DEBUG   SenderThread:30812 [sender.py:send():232] send: files
+2022-04-23 17:42:03,173 INFO    SenderThread:30812 [sender.py:_save_file():946] saving file wandb-metadata.json with policy now
+2022-04-23 17:42:03,181 DEBUG   HandlerThread:30812 [handler.py:handle_request():141] handle_request: stop_status
+2022-04-23 17:42:03,182 DEBUG   SenderThread:30812 [sender.py:send_request():246] send_request: stop_status
+2022-04-23 17:42:03,406 DEBUG   SenderThread:30812 [sender.py:send():232] send: telemetry
+2022-04-23 17:42:03,407 DEBUG   SenderThread:30812 [sender.py:send():232] send: telemetry
+2022-04-23 17:42:03,407 DEBUG   SenderThread:30812 [sender.py:send():232] send: run
+2022-04-23 17:42:03,467 INFO    Thread-7  :30812 [dir_watcher.py:_on_file_modified():226] file/dir modified: /data/codes/isedol_segmentation/wandb/run-20220423_174200-29hu0svr/files/config.yaml
+2022-04-23 17:42:03,471 INFO    Thread-7  :30812 [dir_watcher.py:_on_file_modified():226] file/dir modified: /data/codes/isedol_segmentation/wandb/run-20220423_174200-29hu0svr/files/conda-environment.yaml
+2022-04-23 17:42:03,471 INFO    Thread-7  :30812 [dir_watcher.py:_on_file_created():213] file/dir created: /data/codes/isedol_segmentation/wandb/run-20220423_174200-29hu0svr/files/wandb-metadata.json
+2022-04-23 17:42:03,471 INFO    Thread-7  :30812 [dir_watcher.py:_on_file_created():213] file/dir created: /data/codes/isedol_segmentation/wandb/run-20220423_174200-29hu0svr/files/output.log
+2022-04-23 17:42:03,658 INFO    SenderThread:30812 [sender.py:send_run():707] updated run: 29hu0svr
+2022-04-23 17:42:03,835 INFO    Thread-11 :30812 [upload_job.py:push():137] Uploaded file /tmp/tmpawco34wgwandb/d349dj78-wandb-metadata.json
+2022-04-23 17:42:04,836 DEBUG   SenderThread:30812 [sender.py:send():232] send: telemetry
+2022-04-23 17:42:05,468 INFO    Thread-7  :30812 [dir_watcher.py:_on_file_modified():226] file/dir modified: /data/codes/isedol_segmentation/wandb/run-20220423_174200-29hu0svr/files/output.log
+2022-04-23 17:42:07,194 DEBUG   HandlerThread:30812 [handler.py:handle_request():141] handle_request: poll_exit
+2022-04-23 17:42:07,195 DEBUG   SenderThread:30812 [sender.py:send():232] send: exit
+2022-04-23 17:42:07,195 INFO    SenderThread:30812 [sender.py:send_exit():368] handling exit code: 1
+2022-04-23 17:42:07,196 INFO    SenderThread:30812 [sender.py:send_exit():370] handling runtime: 5
+2022-04-23 17:42:07,469 INFO    Thread-7  :30812 [dir_watcher.py:_on_file_modified():226] file/dir modified: /data/codes/isedol_segmentation/wandb/run-20220423_174200-29hu0svr/files/wandb-summary.json
+2022-04-23 17:42:07,469 INFO    Thread-7  :30812 [dir_watcher.py:_on_file_modified():226] file/dir modified: /data/codes/isedol_segmentation/wandb/run-20220423_174200-29hu0svr/files/output.log
+2022-04-23 17:42:07,640 INFO    SenderThread:30812 [sender.py:_save_file():946] saving file wandb-summary.json with policy end
+2022-04-23 17:42:07,640 INFO    SenderThread:30812 [sender.py:send_exit():376] send defer
+2022-04-23 17:42:07,640 DEBUG   SenderThread:30812 [sender.py:send_request():246] send_request: poll_exit
+2022-04-23 17:42:07,641 DEBUG   HandlerThread:30812 [handler.py:handle_request():141] handle_request: defer
+2022-04-23 17:42:07,641 INFO    HandlerThread:30812 [handler.py:handle_request_defer():164] handle defer: 0
+2022-04-23 17:42:07,642 DEBUG   SenderThread:30812 [sender.py:send_request():246] send_request: defer
+2022-04-23 17:42:07,642 INFO    SenderThread:30812 [sender.py:send_request_defer():385] handle sender defer: 0
+2022-04-23 17:42:07,642 INFO    SenderThread:30812 [sender.py:transition_state():389] send defer: 1
+2022-04-23 17:42:07,642 DEBUG   HandlerThread:30812 [handler.py:handle_request():141] handle_request: defer
+2022-04-23 17:42:07,642 INFO    HandlerThread:30812 [handler.py:handle_request_defer():164] handle defer: 1
+2022-04-23 17:42:07,643 DEBUG   SenderThread:30812 [sender.py:send_request():246] send_request: defer
+2022-04-23 17:42:07,643 INFO    SenderThread:30812 [sender.py:send_request_defer():385] handle sender defer: 1
+2022-04-23 17:42:07,643 INFO    SenderThread:30812 [sender.py:transition_state():389] send defer: 2
+2022-04-23 17:42:07,643 DEBUG   HandlerThread:30812 [handler.py:handle_request():141] handle_request: defer
+2022-04-23 17:42:07,643 INFO    HandlerThread:30812 [handler.py:handle_request_defer():164] handle defer: 2
+2022-04-23 17:42:07,644 DEBUG   SenderThread:30812 [sender.py:send_request():246] send_request: defer
+2022-04-23 17:42:07,644 INFO    SenderThread:30812 [sender.py:send_request_defer():385] handle sender defer: 2
+2022-04-23 17:42:07,644 INFO    SenderThread:30812 [sender.py:transition_state():389] send defer: 3
+2022-04-23 17:42:07,644 DEBUG   HandlerThread:30812 [handler.py:handle_request():141] handle_request: defer
+2022-04-23 17:42:07,644 INFO    HandlerThread:30812 [handler.py:handle_request_defer():164] handle defer: 3
+2022-04-23 17:42:07,644 DEBUG   SenderThread:30812 [sender.py:send_request():246] send_request: defer
+2022-04-23 17:42:07,644 INFO    SenderThread:30812 [sender.py:send_request_defer():385] handle sender defer: 3
+2022-04-23 17:42:07,644 INFO    SenderThread:30812 [sender.py:transition_state():389] send defer: 4
+2022-04-23 17:42:07,645 DEBUG   HandlerThread:30812 [handler.py:handle_request():141] handle_request: defer
+2022-04-23 17:42:07,645 INFO    HandlerThread:30812 [handler.py:handle_request_defer():164] handle defer: 4
+2022-04-23 17:42:07,645 DEBUG   SenderThread:30812 [sender.py:send():232] send: summary
+2022-04-23 17:42:07,646 INFO    SenderThread:30812 [sender.py:_save_file():946] saving file wandb-summary.json with policy end
+2022-04-23 17:42:07,647 DEBUG   SenderThread:30812 [sender.py:send_request():246] send_request: defer
+2022-04-23 17:42:07,647 INFO    SenderThread:30812 [sender.py:send_request_defer():385] handle sender defer: 4
+2022-04-23 17:42:07,647 INFO    SenderThread:30812 [sender.py:transition_state():389] send defer: 5
+2022-04-23 17:42:07,647 DEBUG   HandlerThread:30812 [handler.py:handle_request():141] handle_request: defer
+2022-04-23 17:42:07,648 INFO    HandlerThread:30812 [handler.py:handle_request_defer():164] handle defer: 5
+2022-04-23 17:42:07,648 DEBUG   SenderThread:30812 [sender.py:send_request():246] send_request: defer
+2022-04-23 17:42:07,648 INFO    SenderThread:30812 [sender.py:send_request_defer():385] handle sender defer: 5
+2022-04-23 17:42:07,743 DEBUG   HandlerThread:30812 [handler.py:handle_request():141] handle_request: poll_exit
+2022-04-23 17:42:07,919 INFO    SenderThread:30812 [sender.py:transition_state():389] send defer: 6
+2022-04-23 17:42:07,920 DEBUG   SenderThread:30812 [sender.py:send_request():246] send_request: poll_exit
+2022-04-23 17:42:07,921 DEBUG   HandlerThread:30812 [handler.py:handle_request():141] handle_request: defer
+2022-04-23 17:42:07,921 INFO    HandlerThread:30812 [handler.py:handle_request_defer():164] handle defer: 6
+2022-04-23 17:42:07,921 DEBUG   SenderThread:30812 [sender.py:send_request():246] send_request: defer
+2022-04-23 17:42:07,921 INFO    SenderThread:30812 [sender.py:send_request_defer():385] handle sender defer: 6
+2022-04-23 17:42:07,921 INFO    SenderThread:30812 [dir_watcher.py:finish():279] shutting down directory watcher
+2022-04-23 17:42:08,022 DEBUG   HandlerThread:30812 [handler.py:handle_request():141] handle_request: poll_exit
+2022-04-23 17:42:08,470 INFO    Thread-7  :30812 [dir_watcher.py:_on_file_modified():226] file/dir modified: /data/codes/isedol_segmentation/wandb/run-20220423_174200-29hu0svr/files/config.yaml
+2022-04-23 17:42:08,470 INFO    SenderThread:30812 [dir_watcher.py:_on_file_modified():226] file/dir modified: /data/codes/isedol_segmentation/wandb/run-20220423_174200-29hu0svr/files/wandb-summary.json
+2022-04-23 17:42:08,471 INFO    SenderThread:30812 [dir_watcher.py:finish():309] scan: /data/codes/isedol_segmentation/wandb/run-20220423_174200-29hu0svr/files
+2022-04-23 17:42:08,471 INFO    SenderThread:30812 [dir_watcher.py:finish():323] scan save: /data/codes/isedol_segmentation/wandb/run-20220423_174200-29hu0svr/files/conda-environment.yaml conda-environment.yaml
+2022-04-23 17:42:08,471 INFO    SenderThread:30812 [dir_watcher.py:finish():323] scan save: /data/codes/isedol_segmentation/wandb/run-20220423_174200-29hu0svr/files/output.log output.log
+2022-04-23 17:42:08,472 INFO    SenderThread:30812 [dir_watcher.py:finish():323] scan save: /data/codes/isedol_segmentation/wandb/run-20220423_174200-29hu0svr/files/config.yaml config.yaml
+2022-04-23 17:42:08,477 INFO    SenderThread:30812 [dir_watcher.py:finish():323] scan save: /data/codes/isedol_segmentation/wandb/run-20220423_174200-29hu0svr/files/requirements.txt requirements.txt
+2022-04-23 17:42:08,484 INFO    SenderThread:30812 [dir_watcher.py:finish():323] scan save: /data/codes/isedol_segmentation/wandb/run-20220423_174200-29hu0svr/files/wandb-metadata.json wandb-metadata.json
+2022-04-23 17:42:08,484 INFO    SenderThread:30812 [dir_watcher.py:finish():323] scan save: /data/codes/isedol_segmentation/wandb/run-20220423_174200-29hu0svr/files/wandb-summary.json wandb-summary.json
+2022-04-23 17:42:08,497 INFO    SenderThread:30812 [sender.py:transition_state():389] send defer: 7
+2022-04-23 17:42:08,498 DEBUG   SenderThread:30812 [sender.py:send_request():246] send_request: poll_exit
+2022-04-23 17:42:08,506 DEBUG   HandlerThread:30812 [handler.py:handle_request():141] handle_request: defer
+2022-04-23 17:42:08,506 INFO    HandlerThread:30812 [handler.py:handle_request_defer():164] handle defer: 7
+2022-04-23 17:42:08,507 DEBUG   SenderThread:30812 [sender.py:send_request():246] send_request: defer
+2022-04-23 17:42:08,507 INFO    SenderThread:30812 [sender.py:send_request_defer():385] handle sender defer: 7
+2022-04-23 17:42:08,507 INFO    SenderThread:30812 [file_pusher.py:finish():145] shutting down file pusher
+2022-04-23 17:42:08,601 DEBUG   HandlerThread:30812 [handler.py:handle_request():141] handle_request: poll_exit
+2022-04-23 17:42:08,601 DEBUG   SenderThread:30812 [sender.py:send_request():246] send_request: poll_exit
+2022-04-23 17:42:08,704 DEBUG   HandlerThread:30812 [handler.py:handle_request():141] handle_request: poll_exit
+2022-04-23 17:42:08,704 DEBUG   SenderThread:30812 [sender.py:send_request():246] send_request: poll_exit
+2022-04-23 17:42:08,806 DEBUG   HandlerThread:30812 [handler.py:handle_request():141] handle_request: poll_exit
+2022-04-23 17:42:08,807 DEBUG   SenderThread:30812 [sender.py:send_request():246] send_request: poll_exit
+2022-04-23 17:42:08,909 DEBUG   HandlerThread:30812 [handler.py:handle_request():141] handle_request: poll_exit
+2022-04-23 17:42:08,910 DEBUG   SenderThread:30812 [sender.py:send_request():246] send_request: poll_exit
+2022-04-23 17:42:09,012 DEBUG   HandlerThread:30812 [handler.py:handle_request():141] handle_request: poll_exit
+2022-04-23 17:42:09,012 DEBUG   SenderThread:30812 [sender.py:send_request():246] send_request: poll_exit
+2022-04-23 17:42:09,108 INFO    Thread-16 :30812 [upload_job.py:push():137] Uploaded file /data/codes/isedol_segmentation/wandb/run-20220423_174200-29hu0svr/files/wandb-summary.json
+2022-04-23 17:42:09,115 DEBUG   HandlerThread:30812 [handler.py:handle_request():141] handle_request: poll_exit
+2022-04-23 17:42:09,115 DEBUG   SenderThread:30812 [sender.py:send_request():246] send_request: poll_exit
+2022-04-23 17:42:09,137 INFO    Thread-15 :30812 [upload_job.py:push():137] Uploaded file /data/codes/isedol_segmentation/wandb/run-20220423_174200-29hu0svr/files/requirements.txt
+2022-04-23 17:42:09,149 INFO    Thread-14 :30812 [upload_job.py:push():137] Uploaded file /data/codes/isedol_segmentation/wandb/run-20220423_174200-29hu0svr/files/config.yaml
+2022-04-23 17:42:09,157 INFO    Thread-13 :30812 [upload_job.py:push():137] Uploaded file /data/codes/isedol_segmentation/wandb/run-20220423_174200-29hu0svr/files/output.log
+2022-04-23 17:42:09,157 INFO    Thread-12 :30812 [upload_job.py:push():137] Uploaded file /data/codes/isedol_segmentation/wandb/run-20220423_174200-29hu0svr/files/conda-environment.yaml
+2022-04-23 17:42:09,218 DEBUG   HandlerThread:30812 [handler.py:handle_request():141] handle_request: poll_exit
+2022-04-23 17:42:09,218 DEBUG   SenderThread:30812 [sender.py:send_request():246] send_request: poll_exit
+2022-04-23 17:42:09,320 DEBUG   HandlerThread:30812 [handler.py:handle_request():141] handle_request: poll_exit
+2022-04-23 17:42:09,321 DEBUG   SenderThread:30812 [sender.py:send_request():246] send_request: poll_exit
+2022-04-23 17:42:09,358 INFO    Thread-6  :30812 [sender.py:transition_state():389] send defer: 8
+2022-04-23 17:42:09,359 DEBUG   HandlerThread:30812 [handler.py:handle_request():141] handle_request: defer
+2022-04-23 17:42:09,359 INFO    HandlerThread:30812 [handler.py:handle_request_defer():164] handle defer: 8
+2022-04-23 17:42:09,359 DEBUG   SenderThread:30812 [sender.py:send_request():246] send_request: defer
+2022-04-23 17:42:09,359 INFO    SenderThread:30812 [sender.py:send_request_defer():385] handle sender defer: 8
+2022-04-23 17:42:09,423 DEBUG   HandlerThread:30812 [handler.py:handle_request():141] handle_request: poll_exit
+2022-04-23 17:42:09,955 INFO    SenderThread:30812 [sender.py:transition_state():389] send defer: 9
+2022-04-23 17:42:09,955 DEBUG   SenderThread:30812 [sender.py:send_request():246] send_request: poll_exit
+2022-04-23 17:42:09,956 DEBUG   HandlerThread:30812 [handler.py:handle_request():141] handle_request: defer
+2022-04-23 17:42:09,956 INFO    HandlerThread:30812 [handler.py:handle_request_defer():164] handle defer: 9
+2022-04-23 17:42:09,957 DEBUG   SenderThread:30812 [sender.py:send_request():246] send_request: defer
+2022-04-23 17:42:09,957 INFO    SenderThread:30812 [sender.py:send_request_defer():385] handle sender defer: 9
+2022-04-23 17:42:09,957 INFO    SenderThread:30812 [sender.py:transition_state():389] send defer: 10
+2022-04-23 17:42:09,958 DEBUG   SenderThread:30812 [sender.py:send():232] send: final
+2022-04-23 17:42:09,958 DEBUG   HandlerThread:30812 [handler.py:handle_request():141] handle_request: defer
+2022-04-23 17:42:09,959 DEBUG   SenderThread:30812 [sender.py:send():232] send: footer
+2022-04-23 17:42:09,959 INFO    HandlerThread:30812 [handler.py:handle_request_defer():164] handle defer: 10
+2022-04-23 17:42:09,959 DEBUG   SenderThread:30812 [sender.py:send_request():246] send_request: defer
+2022-04-23 17:42:09,959 INFO    SenderThread:30812 [sender.py:send_request_defer():385] handle sender defer: 10
+2022-04-23 17:42:10,058 DEBUG   HandlerThread:30812 [handler.py:handle_request():141] handle_request: poll_exit
+2022-04-23 17:42:10,058 DEBUG   SenderThread:30812 [sender.py:send_request():246] send_request: poll_exit
+2022-04-23 17:42:10,058 INFO    SenderThread:30812 [file_pusher.py:join():150] waiting for file pusher
+2022-04-23 17:42:10,598 DEBUG   HandlerThread:30812 [handler.py:handle_request():141] handle_request: sampled_history
+2022-04-23 17:42:10,599 DEBUG   HandlerThread:30812 [handler.py:handle_request():141] handle_request: get_summary
+2022-04-23 17:42:10,600 DEBUG   HandlerThread:30812 [handler.py:handle_request():141] handle_request: shutdown
+2022-04-23 17:42:10,600 INFO    HandlerThread:30812 [handler.py:finish():806] shutting down handler
+2022-04-23 17:42:10,959 INFO    WriterThread:30812 [datastore.py:close():279] close: /data/codes/isedol_segmentation/wandb/run-20220423_174200-29hu0svr/run-29hu0svr.wandb
+2022-04-23 17:42:11,496 INFO    SenderThread:30812 [sender.py:finish():1106] shutting down sender
+2022-04-23 17:42:11,496 INFO    SenderThread:30812 [file_pusher.py:finish():145] shutting down file pusher
+2022-04-23 17:42:11,496 INFO    SenderThread:30812 [file_pusher.py:join():150] waiting for file pusher
+2022-04-23 17:42:11,499 INFO    MainThread:30812 [internal.py:handle_exit():80] Internal process exited

@@ -32,7 +32,6 @@ do
     
     /usr/anaconda3/envs/hair_task/bin/python /home/jini1114/git/isedol_segmentation/faster-r-cnn.py\
         --name=$file \
-        --tr_data_dir=$tr_data_dir \
         --aug_dir=$aug_dir \
         --model_dir=$model_dir
 done

@@ -1,0 +1,25 @@
+{
+    "os": "Linux-5.4.0-89-generic-x86_64-with-debian-buster-sid",
+    "python": "3.6.13",
+    "heartbeatAt": "2022-04-23T08:42:01.560429",
+    "startedAt": "2022-04-23T08:42:00.445275",
+    "docker": null,
+    "cpu_count": 36,
+    "cuda": null,
+    "args": [
+        "--name",
+        "gosegu"
+    ],
+    "state": "running",
+    "program": "faster-r-cnn.py",
+    "codePath": "faster-r-cnn.py",
+    "git": {
+        "remote": "https://github.com/wlsdml1114/isedol_segmentation.git",
+        "commit": "05deb5dcfbfeefedc617d008de11bd4d8dfdd15b"
+    },
+    "email": null,
+    "root": "/data/codes/isedol_segmentation",
+    "host": "smartai",
+    "username": "smartai",
+    "executable": "/home/smartai/anaconda3/envs/seg/bin/python"
+}

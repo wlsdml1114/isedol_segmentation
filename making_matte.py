@@ -17,7 +17,6 @@ def get_args():
 	parser.add_argument('--jpg_dir', type=str,required=True)
 	parser.add_argument('--png_dir', type=str, required=True)
 	parser.add_argument('--token', type=str, required=True)
-	parser.add_argument('--wav_dir', type=str, required=True)
 	args = parser.parse_args()
 	return args
 
@@ -30,7 +29,6 @@ file_names = file_name.split('/')
 origin_file_name = file_names[-1]
 
 ori_dir = args.ori_dir
-wav_dir = os.path.join(args.wav_dir,'test',origin_file_name)
 jpg_dir = os.path.join(args.jpg_dir,origin_file_name)
 png_dir = os.path.join(args.png_dir,origin_file_name)
 
@@ -59,8 +57,6 @@ while True :
         cv2.imwrite(os.path.join(jpg_dir,'%d.jpg'%(count)),frame[400:,1200:,:])
     count+=1
 
-
-run(jpg_dir,png_dir)
 
 token = slack_token
 channel = "#finish-alarm"
