@@ -247,8 +247,8 @@ args = parser.parse_args()
 
 #set root
 name = args.name
-data_path = os.path.join('/data/codes/data/augmen/',name)
-model_path = '/data/codes/data/model/'
+data_path = os.path.join('/home/jini1114/git/data/augmentation',name)
+model_path = '/home/jini1114/git/data/model/'
 #Origin_path = '/mnt/nasmnt/sat'
 
 wandb.init(project="segmentation", entity="engui")
@@ -300,7 +300,7 @@ lr_scheduler = torch.optim.lr_scheduler.StepLR(optimizer,
                                                 step_size=3,
                                                 gamma=0.1)
 
-num_epochs = 5
+num_epochs = 2
 
 wandb.config = {
   "learning_rate": lr,

@@ -12,7 +12,7 @@ from PIL import Image
 ori_dir = '/home/jini1114/git/data/dataset'
 aug_dir = '/home/jini1114/git/data/augmentation'
 
-folders = "viichan"
+folders = ["viichan"]
 
 
 for folder in folders:

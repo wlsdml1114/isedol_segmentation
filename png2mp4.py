@@ -247,6 +247,49 @@ for i in tqdm(range(len(frames)),desc = 'mp4 making'):
 
 output.release()
 
+
+##
+
+frames = []
+
+kernel = np.ones((7,7),np.float32)/49
+
+files = os.listdir(seg_dir)
+for idx in tqdm(range(len(files)),desc = 'frame loading'):
+    temp = cv2.imread(os.path.join(seg_dir,'%d.png'%(idx)))
+    temp[temp>150] = 255
+    temp[temp<=150] = 0
+    try :
+        maximg = find_max_connected_component(temp)
+    except :
+        maximg = temp[:,:,0]
+
+    gray = maximg
+    res = cv2.findContours(gray.astype(np.uint8), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
+    contours = res[-2]
+    area = []
+    for i in range(len(contours)):
+        area.append(cv2.contourArea(contours[i]))
+    try:
+        idx = np.where(np.max(area)==area)[0][0]
+        cv2.drawContours(gray, contours, contourIdx=idx, color=(255,255,255),thickness=-1)
+    except :
+        pass
+    
+    dst = cv2.filter2D(gray,-1,kernel)
+
+    frames.append(dst)
+
+h,w,l = dst.shape
+size = (w,h)
+
+output = cv2.VideoWriter(os.path.join(out_dir,'seg_filter_component_full_'+origin_file_name),cv2.VideoWriter_fourcc(*'DIVX'),fps,size)
+
+for i in tqdm(range(len(frames)),desc = 'mp4 making'):
+    output.write(frames[i])
+
+output.release()
+
 #seg_contour_full
 frames = []
 
