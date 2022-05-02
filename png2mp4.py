@@ -25,15 +25,6 @@ def find_max_connected_component(img):
 def get_args():
 	
 	parser = argparse.ArgumentParser(description='Arguments for the testing purpose.')	
-	# backbone: the backbone of GFM, we provide four backbones - r34, r34_2b, d121 and r101.
-	# rosta (Representations of Semantic and Transition areas): we provide three types - TT, FT, and BT. 
-	# We also present RIM indicates RoSTa Integration Module.
-	# model_path: path of the pretrained model to use
-	# pred_choice(TT/FT/BT): 1 (glance decoder), 2 (focus decoder) and 3 (final result after Collaborative Matting) 
-	# pred_choice(RIM): 1 (TT result), 2 (FT result), 3 (BT result), and 4 (RIM result). 
-	# test_choice: test strategy (HYBRID or RESIZE)
-	# test_result_dir: path to save the test results
-	# logname: name of the logging files
 	parser.add_argument('--file_name', type=str, required=True)
 	parser.add_argument('--jpg_dir', type=str,required=False,default='/home/jini1114/git/MODNet/output')
 	parser.add_argument('--png_dir', type=str, required=False,default='/home/jini1114/git/MODNet/temp')
@@ -91,93 +82,13 @@ png_dir = os.path.join(args.png_dir,origin_file_name)
 seg_dir = os.path.join(args.seg_dir,origin_file_name)
 out_dir = args.out_dir
 fps = args.fps
-'''
-#mod
-frames = []
 
-files = os.listdir(png_dir)
-for idx in tqdm(range(len(files)),desc = 'frame loading'):
-    modnet = cv2.imread(os.path.join(png_dir,'%d.png'%(idx)))
-    gray = cv2.cvtColor(modnet, cv2.COLOR_RGB2GRAY)
-    res = cv2.findContours(gray.astype(np.uint8), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
-    contours = res[-2]
-    contours = scale_contour(contours,0.9)
-    cv2.drawContours(modnet, contours, contourIdx=-1, color=(255,255,255),thickness=-1)
-
-    frames.append(modnet.astype(np.uint8))
-
-h,w,l = modnet.shape
-size = (w,h)
-
-output = cv2.VideoWriter(os.path.join(out_dir,'mod_'+origin_file_name),cv2.VideoWriter_fourcc(*'DIVX'),fps,size)
-
-for i in tqdm(range(len(frames)),desc = 'mp4 making'):
-    output.write(frames[i])
-
-output.release()
-'''
-'''
-#jpg
-frames = []
-
-files = os.listdir(png_dir)
-for idx in tqdm(range(len(files)),desc = 'frame loading'):
-    modnet = cv2.imread(os.path.join(png_dir,'%d.png'%(idx)))
-    frames.append(modnet)
-
-h,w,l = modnet.shape
-size = (w,h)
-
-output = cv2.VideoWriter(os.path.join(out_dir,'mod_'+origin_file_name),cv2.VideoWriter_fourcc(*'DIVX'),fps,size)
-
-for i in tqdm(range(len(frames)),desc = 'mp4 making'):
-    output.write(frames[i])
-
-output.release()
-
-
-#jpg
-frames = []
-
-files = os.listdir(png_dir)
-for idx in tqdm(range(len(files)),desc = 'frame loading'):
-    temp = cv2.imread(os.path.join(png_dir,'%d.png'%(idx)))
-    gray = temp[:,:,0]
-    res = cv2.findContours(gray.astype(np.uint8), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
-    contours = res[-2]
-    area = []
-    for i in range(len(contours)):
-        area.append(cv2.contourArea(contours[i]))
-    try:
-        idx = np.where(np.max(area) == area)[0][0]
-        cv2.drawContours(temp, contours, contourIdx=idx, color=(255,255,255),thickness=-1)
-    except:
-        pass
-    frames.append(temp.astype(np.uint8))
-
-h,w,c = temp.shape
-size = (w,h)
-
-output = cv2.VideoWriter(os.path.join(out_dir,'modful_'+origin_file_name),cv2.VideoWriter_fourcc(*'DIVX'),fps,size)
-
-for i in tqdm(range(len(frames)),desc = 'mp4 making'):
-    output.write(frames[i])
-
-output.release()
-'''
 #seg
 frames = []
 
 files = os.listdir(seg_dir)
 for idx in tqdm(range(len(files)),desc = 'frame loading'):
     modnet = cv2.imread(os.path.join(seg_dir,'%d.png'%(idx)))
-    '''
-    gray = cv2.cvtColor(modnet, cv2.COLOR_RGB2GRAY)
-    res = cv2.findContours(gray.astype(np.uint8), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
-    contours = res[-2]
-    contours = scale_contour(contours,0.9)
-    cv2.drawContours(modnet, contours, contourIdx=-1, color=(255,255,255),thickness=-1)
-    '''
     frames.append(modnet.astype(np.uint8))
 
 h,w,l = modnet.shape
@@ -319,10 +230,6 @@ for i in tqdm(range(len(frames)),desc = 'mp4 making'):
 
 output.release()
 
-
-
-
-
 #cut origin
 frames = []
 
@@ -347,6 +254,6 @@ requests.post("https://slack.com/api/chat.postMessage",
     headers={"Authorization": "Bearer "+token},
     data={"channel": channel,"text": text})
 
-#os.system('rm -r '+jpg_dir)
-#os.system('rm -r '+png_dir)
-#os.system('rm -r '+seg_dir)
+os.system('rm -r '+jpg_dir)
+os.system('rm -r '+png_dir)
+os.system('rm -r '+seg_dir)

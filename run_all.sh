@@ -1,6 +1,6 @@
 #/bin/bash
 
-ori_dir='/data/codes/data/input'
+ori_dir='/home/jini1114/git/data/input'
 
 nohup bash demixing.sh &
 
