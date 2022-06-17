@@ -38,7 +38,7 @@ model.to(device)
 
 files = os.listdir(os.path.join(jpg_dir,folder))
 
-for idx in tqdm(range(len(files))):
+for idx in range(len(files)):
     img = cv2.imread(os.path.join(jpg_dir,folder,'%d.jpg'%(idx)))
     img = img.astype(np.float32)
     img = img/255

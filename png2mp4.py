@@ -82,7 +82,7 @@ png_dir = os.path.join(args.png_dir,origin_file_name)
 seg_dir = os.path.join(args.seg_dir,origin_file_name)
 out_dir = args.out_dir
 fps = args.fps
-
+'''
 #seg
 frames = []
 
@@ -101,7 +101,7 @@ for i in tqdm(range(len(frames)),desc = 'mp4 making'):
 
 output.release()
 
-
+'''
 ##
 
 frames = []
@@ -109,7 +109,7 @@ frames = []
 kernel = np.ones((10,10),np.float32)/100
 
 files = os.listdir(seg_dir)
-for idx in tqdm(range(len(files)),desc = 'frame loading'):
+for idx in range(len(files)):
     temp = cv2.imread(os.path.join(seg_dir,'%d.png'%(idx)))
     temp[temp>125] = 255
     temp[temp<=125] = 0
@@ -136,7 +136,7 @@ frames = []
 kernel = np.ones((10,10),np.float32)/100
 
 files = os.listdir(seg_dir)
-for idx in tqdm(range(len(files)),desc = 'frame loading'):
+for idx in range(len(files)):
     temp = cv2.imread(os.path.join(seg_dir,'%d.png'%(idx)))
     temp[temp>127] = 255
     temp[temp<=127] = 0
@@ -158,7 +158,7 @@ for i in tqdm(range(len(frames)),desc = 'mp4 making'):
 
 output.release()
 
-
+'''
 ##
 
 frames = []
@@ -166,14 +166,14 @@ frames = []
 kernel = np.ones((7,7),np.float32)/49
 
 files = os.listdir(seg_dir)
-for idx in tqdm(range(len(files)),desc = 'frame loading'):
+for idx in range(len(files)):
     temp = cv2.imread(os.path.join(seg_dir,'%d.png'%(idx)))
     temp[temp>150] = 255
     temp[temp<=150] = 0
     try :
         maximg = find_max_connected_component(temp)
     except :
-        maximg = temp[:,:,0]
+        maximg = temp
 
     gray = maximg
     res = cv2.findContours(gray.astype(np.uint8), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
@@ -183,20 +183,25 @@ for idx in tqdm(range(len(files)),desc = 'frame loading'):
         area.append(cv2.contourArea(contours[i]))
     try:
         idx = np.where(np.max(area)==area)[0][0]
-        cv2.drawContours(gray, contours, contourIdx=idx, color=(255,255,255),thickness=-1)
     except :
-        pass
+        frames.append(gray)
+        continue
+    try:
+        cv2.drawContours(gray, contours, contourIdx=idx, color=(255,255,255),thickness=-1)
+        dst = cv2.filter2D(gray,-1,kernel)
+    except :
+        dst = gray
     
-    dst = cv2.filter2D(gray,-1,kernel)
+    
 
-    frames.append(dst)
+    frames.append(dst.astype(np.uint8))
 
-h,w,l = dst.shape
+h,w = dst.shape
 size = (w,h)
 
 output = cv2.VideoWriter(os.path.join(out_dir,'seg_filter_component_full_'+origin_file_name),cv2.VideoWriter_fourcc(*'DIVX'),fps,size)
 
-for i in tqdm(range(len(frames)),desc = 'mp4 making'):
+for i in range(len(frames)):
     output.write(frames[i])
 
 output.release()
@@ -225,10 +230,11 @@ size = (w,h)
 
 output = cv2.VideoWriter(os.path.join(out_dir,'segfull_'+origin_file_name),cv2.VideoWriter_fourcc(*'DIVX'),fps,size)
 
-for i in tqdm(range(len(frames)),desc = 'mp4 making'):
+for i in range(len(frames)):
     output.write(frames[i])
 
 output.release()
+'''
 
 #cut origin
 frames = []
@@ -242,7 +248,7 @@ size = (w,h)
 
 output_cut = cv2.VideoWriter(os.path.join(out_dir,'cut_'+origin_file_name),cv2.VideoWriter_fourcc(*'DIVX'),fps,size)
 
-for i in tqdm(range(len(frames)),desc = 'mp4 making'):
+for i in range(len(frames)):
     output_cut.write(frames[i])
 
 output_cut.release()

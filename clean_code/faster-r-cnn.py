@@ -188,7 +188,6 @@ print('Count of using GPUs:', torch.cuda.device_count())
 num_classes = 2
 dataset = CustomDataset(data_path, get_transform(train=True))
 
-
 batch_size = 16
 lr = 0.005
 data_loader = torch.utils.data.DataLoader(

@@ -36,10 +36,8 @@ do
         --jpg_dir=$jpg_dir \
         --png_dir=$png_dir \
         --out_dir=$out_dir \
-        --seg_num_dir=$seg_num_dir \
         --fps=$fps \
         --seg_dir=$seg_dir \
-        --token=$SLACK_TOKEN \
-        --wav_dir=$wav_dir
+        --token=$SLACK_TOKEN
     
 done
